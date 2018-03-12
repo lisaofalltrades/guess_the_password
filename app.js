@@ -1,14 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+  console.log("DOM loaded");
   var wordCount = 10;
   var guessCount = 4;
   var password = '';
 
-  var start = document.getElementById('start');
-  start.addEventListener('click', function() {
-    toggleClasses(document.getElementById('start-screen'), 'hide', 'show');
-    toggleClasses(document.getElementById('game-screen'), 'hide', 'show');
-    startGame();
+  var start = d3.select('#start');
+  var startScreen = d3.select('#start-screen');
+  var gameScreen = d3.select('#game-screen');
+
+  start.on('click', function(){
+    startScreen.classed('show', false);
+    startScreen.classed('hide', true);
+    gameScreen.classed('hide', false);
+    gameScreen.classed('show', true);
   });
+
+    startGame();
 
   function toggleClasses(element) {
     for (var i = 1; i < arguments.length; i++) {
